@@ -5,8 +5,8 @@ set -o nounset
 set -o pipefail
 
 # Used for wait_for_mongo_* functions
-MAX_ATTEMPTS=60
-SLEEP_TIME=1
+MAX_ATTEMPTS=120
+SLEEP_TIME=2
 
 export MONGODB_CONFIG_PATH=/etc/mongod.conf
 export MONGODB_PID_FILE=/var/lib/mongodb/mongodb.pid

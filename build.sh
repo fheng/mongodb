@@ -1,1 +1,1 @@
-make build TARGET=rhel7 VERSION=2.4
+make build TARGET=centos7 VERSION=3.2
