@@ -20,7 +20,6 @@ fhBuildNode(['label': 'openshift']) {
                 changeUrl: CHANGE_URL
         ]
         fhOpenshiftTemplatesComponentUpdate(updateParams)
-        fhCoreOpenshiftTemplatesComponentUpdate(updateParams)
     }
 
     stage('Build Image') {
