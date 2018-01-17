@@ -22,13 +22,14 @@ ENTRYPOINT ["container-entrypoint"]
 CMD ["run-mongod"]
 
 RUN yum install -y centos-release-scl && \
-    INSTALL_PKGS="bind-utils gettext iproute rsync tar rh-mongodb32-mongodb rh-mongodb32 rh-mongodb32-mongo-tools" && \
+    yum --enablerepo=extras install -y epel-release && \
+    INSTALL_PKGS="bind-utils gettext iproute rsync tar rh-mongodb32-mongodb rh-mongodb32 rh-mongodb32-mongo-tools python-pip" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    yum clean all
+    yum clean all && \
+    pip install awscli
 
 ADD root /
-
 
 # Container setup
 RUN touch /etc/mongod.conf && \
