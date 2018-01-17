@@ -64,7 +64,13 @@ mongo_common_args="-f ${MONGODB_CONFIG_PATH}"
 setup_keyfile
 setup_default_datadir
 
-${CONTAINER_SCRIPTS_PATH}/init-replset.sh &
+if [ ${USE_HEADLESS_SVC:+x} ] && ${USE_HEADLESS_SVC} == "true"; then
+	echo "Calling headless service startup init script"
+	${CONTAINER_SCRIPTS_PATH}/init-replset-core.sh &
+else
+	${CONTAINER_SCRIPTS_PATH}/init-replset.sh &
+fi
+
 
 # TODO: capture exit code of `init-petset-replset.sh` and exit with an error if
 # the initialization failed, so that the container will be restarted and the
