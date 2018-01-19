@@ -104,9 +104,9 @@ readonly MEMBER_ID="${MEMBER_HOST##*-}"
 fqdn=$(get_fqdn_hostname "${MEMBER_HOST}")
 # Initialize replica set only if we're the first member
 if [ "${MEMBER_ID}" = '1' ]; then
-  initiate "${fqdn}"
+  initiate "${fqdn}.svc.cluster.local:27017"
 else
-  add_member "${fqdn}"
+  add_member "${fqdn}.svc.cluster.local:27017"
 fi
 
 >/tmp/initialized
